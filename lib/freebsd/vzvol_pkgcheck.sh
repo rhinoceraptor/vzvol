@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 vzvol_pkg_check_freebsd(){
 	if [ "${FSTYPE}" = "ext2" -o "${FSTYPE}" = "ext3" -o "${FSTYPE}" = "ext4" -o "${FSTYPE}" = "xfs" ]; then
 		echo "Warning. You have selected an FS type supplied by a port. Now checking to see if the port is installed."

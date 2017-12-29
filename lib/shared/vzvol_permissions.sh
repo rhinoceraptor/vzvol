@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 vzvol_permissions() {
 	
 	chown "${ZUSER}" "${ZVOL_NAME}"

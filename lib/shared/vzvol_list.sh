@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 vzvol_list() {
 	vzvol_pre_list
 	if [ $? = 2 ]; then

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 zvol_create_fs_zfs() {
 	errorfunc='zvol_create_fs_zfs'
 	echo "Creating ZFS Filesystem on /dev/zvol/${FORMAT_ME}"

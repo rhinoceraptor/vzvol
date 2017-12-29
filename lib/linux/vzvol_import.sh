@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 vzvol_import_img() {
 	errorfunc='vzvol_import_img'
 	ZVOL_IMPORT=/dev/zvol/"${ZROOT}/${VOLNAME}"

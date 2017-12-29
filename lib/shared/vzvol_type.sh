@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 zvol_type_select() {
 	errorfunc='zvol_type_select'
 	if [ "$VOLTYPE" = raw ]; then

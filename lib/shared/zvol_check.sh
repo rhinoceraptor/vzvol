@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 zvol_check() {
 	errorfunc='zvol_check'
 	if [ "${VOLNAME}" = 'DIE' ]; then

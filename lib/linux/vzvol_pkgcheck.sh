@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 vzvol_pkg_check_linux(){
 	if [ -e /usr/bin/lsb_release ]; then
 		vzvol_pkg_lsb

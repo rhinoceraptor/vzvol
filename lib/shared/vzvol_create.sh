@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 zvol_create() {
 	errorfunc='zvol_create'
 	if [ ! -e /dev/zvol/"${ZROOT}/${VOLNAME}" ]; then
