@@ -1,17 +1,17 @@
 #!/usr/bin/env sh
 vmdk_create() {
 	errorfunc='vmdk_create'
-	if [ ! -d "${HOME}"/VBoxdisks/ ]; then
-		mkdir -p "${HOME}"/VBoxdisks/
+	if [ ! -d "${ZUSER_HOME}"/VBoxdisks/ ]; then
+		mkdir -p "${ZUSER_HOME}"/VBoxdisks/
 	fi
-	if [ ! -e "${HOME}"/VBoxdisks/"${VOLNAME}".vmdk ]; then
-		echo "Creating ${HOME}/VBoxdisks/${VOLNAME}.vmdk"
+	if [ ! -e "${ZUSER_HOME}"/VBoxdisks/"${VOLNAME}".vmdk ]; then
+		echo "Creating ${ZUSER_HOME}/VBoxdisks/${VOLNAME}.vmdk"
 		sleep 3
 		VBoxManage internalcommands createrawvmdk \
-		-filename "${HOME}"/VBoxdisks/"${VOLNAME}".vmdk \
-		-rawdisk /dev/zvol/"${ZROOT}/${VOLNAME}"
+		-filename "${ZUSER_HOME}"/VBoxdisks/"${VOLNAME}".vmdk \
+		-rawdisk "${ZVOL_DEVICE_DIR}/${ZROOT}/${VOLNAME}"
 	else
-		echo "${HOME}/VBoxdisks/${VOLNAME}.vmdk" already exists.
+		echo "${ZUSER_HOME}/VBoxdisks/${VOLNAME}.vmdk" already exists.
 		return 1
 	fi
 }

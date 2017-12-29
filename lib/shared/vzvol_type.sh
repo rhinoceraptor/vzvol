@@ -11,10 +11,10 @@ zvol_type_virtualbox() {
 	errorfunc='zvol_type_virtualbox'
 	zvol_create || return 1
 	vmdk_create || return 1
-	echo "Please use ${HOME}/VBoxdisks/${VOLNAME}.vmdk as your VM Disk"
+	echo "Please use ${ZUSER_HOME}/VBoxdisks/${VOLNAME}.vmdk as your VM Disk"
 }
 zvol_type_raw() {
 	errorfunc='zvol_type_raw'
 	zvol_create || return 1
-	echo "You can find your zvol at: /dev/zvol/${ZROOT}/${VOLNAME}"
+	echo "You can find your zvol at: ${ZVOL_DEVICE_DIR}/${ZROOT}/${VOLNAME}"
 }

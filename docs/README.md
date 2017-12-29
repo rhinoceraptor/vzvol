@@ -2,7 +2,7 @@
 vzvol is a tool to assist in the creation of ZFS zvols as storage for various virtualization providers.
 
 ## What
-Creates a ZFS zvol, and configures permissions, and creates and registers a VirtualBox VMDK shim for the zvol if you ask nicely. 
+Creates a ZFS zvol, and configures permissions, and creates and registers a VirtualBox VMDK shim for the zvol if you ask nicely.
 
 ## Why
 This allows you to use the zvol to back a disk for VirtualBox, bhyve, or other virtualization providers.
@@ -31,7 +31,8 @@ fron ports (once it's accepted).
 - dosfstools
 - xfsprogs
 - pv
-
+### MacOS
+- [OpenZFS](https://openzfsonosx.org/)
 ## Will this ever be in the FreeBSD Ports Tree?
 WE'RE IN THE PORTS TREE!
 
@@ -50,9 +51,9 @@ vzvol is currently supported in the following OS pkg systems:
 ## Help
 
 ```
-vzvol is a shell script designed to help automate the process of 
+virtbox-zvol is a shell script designed to help automate the process of
 creating a ZFS zvol for use as a storage unit for virtualization, or testing.
-vzvol was originally created to allow you to back a light .VMDK with a zvol for 
+vzvol was originally created to allow you to back a light .VMDK with a zvol for
 use with VirtualBox, however additional functionality has been added over time to
 make vzvol a general-use program. I hope you find it useful!
 
@@ -85,7 +86,7 @@ the command will FAIL!
 -p | --pool
 This flag will allow you to override the logic to choose the zpool you want
 your zvol on.
-By default, this script selects the first zpool available, unless your 
+By default, this script selects the first zpool available, unless your
 first pool is "bootpool" (as with an encrypted system).
 If your first pool is "bootpool", this script will default to the second
 listed pool, usually "zroot" in a default install.
@@ -93,9 +94,9 @@ listed pool, usually "zroot" in a default install.
 -t | --type
 This option allows you to set the disk type behavior.
 The following types are accepted:
-virtualbox 	- The default behavior, vzvol will create a shim VMDK to point to the created 
+virtualbox 	- The default behavior, vzvol will create a shim VMDK to point to the created
 			zvol.
-raw			- Create a raw, normal zvol with no shim, in the default location of 
+raw			- Create a raw, normal zvol with no shim, in the default location of
 			/dev/zvol/poolname/volumename
 --file-system
 Setting this flag allows you to format the zvol with your choice of filesystem.
@@ -109,15 +110,15 @@ Filesystems with support in FreeBSD:
 Filesystems that require a port be installed:
 *REQUIRES* sysutils/e2fsprogs!
 	ext2		- Creates a Linux-compatible ext2 filesystem.
-	ext3		- Creates a Linux-compatible ext3 filesystem. 	
-	ext4		- Creates a Linux-compatible ext4 filesystem. 	
+	ext3		- Creates a Linux-compatible ext3 filesystem.
+	ext4		- Creates a Linux-compatible ext4 filesystem.
 *REQUIRES* sysutils/xfsprogs!
-	xfs 		- Create an XFS filesystem. 
+	xfs 		- Create an XFS filesystem.
 
---import 
+--import
 The --import flag allows you to import the contents of a downloaded disk image to
 your newly created zvol. This is useful when using a pre-installed VM image, such as
-https://github.com/RainbowHackerHorse/FreeBSD-On-Linode 
+https://github.com/RainbowHackerHorse/FreeBSD-On-Linode
 
 -p
 The -p flag is used with --import to show a progress bar for image data importation
@@ -126,7 +127,7 @@ to the vzol. -p requires that sysutils/pv be installed.
 zvol Management Flags:
 
 --format
-The --format flag allows you to reformat a zvol created by vzvol, using the same 
+The --format flag allows you to reformat a zvol created by vzvol, using the same
 options and arguments as --file-system.
 You must specify the fs type, and then the zvol to format.
 Example: vzvol --format xfs zroot/smartos
@@ -146,5 +147,5 @@ have custom:FS set will report "unknown"
 Example output:
 ZVOL              TYPE        VMDK                                      USED   SIZE  FS
 zroot/smartos     RAW         none                                      20G	   50G   zfs
-zroot/ubuntu1604  VirtualBox  /home/username/VBoxDisks/ubuntu1604.vmdk  1.51G  10G   ext4 
+zroot/ubuntu1604  VirtualBox  /home/username/VBoxDisks/ubuntu1604.vmdk  1.51G  10G   ext4
 ```
