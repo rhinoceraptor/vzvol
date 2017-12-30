@@ -97,7 +97,8 @@ The following types are accepted:
 virtualbox 	- The default behavior, vzvol will create a shim VMDK to point to the created
 			zvol.
 raw			- Create a raw, normal zvol with no shim, in the default location of
-			/dev/zvol/poolname/volumename
+			/dev/zvol/poolname/volumename (FreeBSD and Linux)
+			/var/run/zvol/rdsk/poolname/volumename (MacOS)
 --file-system
 Setting this flag allows you to format the zvol with your choice of filesystem.
 The default for vzvol is to not create a filesystem on the new zvol.

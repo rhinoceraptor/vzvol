@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 vzvol_import_img() {
 	errorfunc='vzvol_import_img'
-	ZVOL_IMPORT=/dev/zvol/"${ZROOT}/${VOLNAME}"
+	ZVOL_IMPORT="${ZVOL_DEVICE_DIR}/${ZROOT}/${VOLNAME}"
 	echo "Testing to ensure zvol exists"
 	if [ ! -f "${ZVOL_IMPORT}" ]; then
 		if [ -L "${ZVOL_IMPORT}" ]; then
