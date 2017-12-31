@@ -9,18 +9,21 @@ vzvol_list() {
 	fi
 	vzvol_pre_list
 	if [ $? = 0 ]; then
-		(printf "ZVOL TYPE VMDK USED SIZE FS \n" \
-		; vzvol_list_type) | column -t
+		echo $(vzvol_list_type)
 	else
 		echo "Error acquiring zvol list"
 		return 1
 	fi
 }
+vzvol_pretty_print(){
+	ZVOL_LIST="ZVOL TYPE VMDK USED SIZE FS \n$@"
+	echo $ZVOL_LIST
+}
 vzvol_pre_list(){
 	(zfs list -t volume 2>&1 | grep -q "no datasets available")
 	if [ $? = 1 ]; then
 		return 0
-	else 
+	else
 		return 2
 	fi
 }
@@ -40,9 +43,9 @@ vzvol_list_type() {
 			zvolfstype="unknown"
 		fi
 		if [ -f "${HOME}/VBoxdisks/${purevolname}.vmdk" ]; then
-			echo "${vols} VirtualBox ${HOME}/VBoxdisks/${purevolname}.vmdk $purevolused $purevolsize $zvolfstype"
+			echo "${vols} VirtualBox ${HOME}/VBoxdisks/${purevolname}.vmdk $purevolused $purevolsize $zvolfstype\n"
 		else
-			echo "${vols} RAW none $purevolused $purevolsize $zvolfstype"
+			echo "${vols} RAW none $purevolused $purevolsize $zvolfstype\n"
 		fi
 	done
 	return 0
