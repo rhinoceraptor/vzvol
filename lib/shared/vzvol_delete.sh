@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 vzvol_delete() {
 	errorfunc='vzvol_delete'
 	echo "WARNING!"

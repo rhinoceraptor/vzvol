@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 zvol_fs_type() {
 	errorfunc='zvol_fs_type'
 	echo "Now formatting ${ZVOL_DEVICE_DIR}/${FORMAT_ME} as ${FSTYPE}"

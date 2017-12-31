@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 vmdk_create() {
 	errorfunc='vmdk_create'
 	if [ ! -d "${ZUSER_HOME}"/VBoxdisks/ ]; then

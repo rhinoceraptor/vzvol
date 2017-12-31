@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 vzvol_showhelp() {
 	errorfunc='show_help'
 	cat << 'EOT'

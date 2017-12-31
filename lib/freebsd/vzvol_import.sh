@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 vzvol_import_img() {
 	errorfunc='vzvol_import_img'
 	ZVOL_IMPORT="${ZVOL_DEVICE_DIR}/${ZROOT}/${VOLNAME}"

@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 SIZE=10G
 VOLNAME=DIE

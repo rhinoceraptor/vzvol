@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 vzvol_getargz() {
 	errorfunc='getargz'
 	while :; do

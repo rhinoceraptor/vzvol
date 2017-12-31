@@ -1,2 +1,2 @@
-#!/usr/bin/env sh
+#!/bin/sh
 VZVOL_SU_CMD="sudo"
