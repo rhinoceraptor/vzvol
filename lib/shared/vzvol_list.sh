@@ -33,7 +33,8 @@ vzvol_pretty_print(){
 			for (i = 1; i <= NF; i++) {
 				maxWidth[i] = $i
 			}
-		} NR != 1 {
+		}
+		NR != 1 {
 			for (i = 1; i <= NF; i++) {
 				printf "%-*s", maxWidth[i] + 2, $i
 			}

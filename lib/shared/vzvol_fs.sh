@@ -15,6 +15,9 @@ zvol_create_fs_fat32_freebsd() {
 zvol_create_fs_fat32_linux() {
 	mkfs.fat "$@"
 }
+zvol_create_fs_fat32_macos() {
+  newfs_msdos "$@"
+}
 zvol_create_fs_ext2() {
 	errorfunc='zvol_create_fs_ext2'
 	echo "Creating ext2 Filesystem on ${ZVOL_DEVICE_DIR}/${FORMAT_ME}"
