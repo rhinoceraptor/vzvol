@@ -9,7 +9,8 @@ vzvol_list() {
 	fi
 	vzvol_pre_list
 	if [ $? = 0 ]; then
-		echo $(vzvol_list_type)
+		ZVOLS=$(vzvol_list_type)
+		vzvol_pretty_print "$ZVOLS"
 	else
 		echo "Error acquiring zvol list"
 		return 1
@@ -17,7 +18,27 @@ vzvol_list() {
 }
 vzvol_pretty_print(){
 	ZVOL_LIST="ZVOL TYPE VMDK USED SIZE FS \n$@"
-	echo $ZVOL_LIST
+	COLUMN_WIDTHS=$(echo "$ZVOL_LIST" | awk '{
+		for (i = 1; i <= NF; i++) {
+			maxWidth[i] = length($i) > maxWidth[i] ? length($i) : maxWidth[i]
+		}
+	} END {
+		for (i = 1; i <= NF; i++) {
+			printf "%s ", maxWidth[i]
+		}
+	}')
+
+	echo "$COLUMN_WIDTHS\n$ZVOL_LIST" | awk '
+		NR == 1 {
+			for (i = 1; i <= NF; i++) {
+				maxWidth[i] = $i
+			}
+		} NR != 1 {
+			for (i = 1; i <= NF; i++) {
+				printf "%-*s", maxWidth[i] + 2, $i
+			}
+			printf "\n"
+		}'
 }
 vzvol_pre_list(){
 	(zfs list -t volume 2>&1 | grep -q "no datasets available")
@@ -43,9 +64,9 @@ vzvol_list_type() {
 			zvolfstype="unknown"
 		fi
 		if [ -f "${HOME}/VBoxdisks/${purevolname}.vmdk" ]; then
-			echo "${vols} VirtualBox ${HOME}/VBoxdisks/${purevolname}.vmdk $purevolused $purevolsize $zvolfstype\n"
+			echo "${vols} VirtualBox ${HOME}/VBoxdisks/${purevolname}.vmdk $purevolused $purevolsize $zvolfstype"
 		else
-			echo "${vols} RAW none $purevolused $purevolsize $zvolfstype\n"
+			echo "${vols} RAW none $purevolused $purevolsize $zvolfstype"
 		fi
 	done
 	return 0
