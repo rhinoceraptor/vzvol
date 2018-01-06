@@ -18,7 +18,7 @@ vzvol_list() {
 }
 vzvol_pretty_print(){
 	ZVOL_LIST="ZVOL TYPE VMDK USED SIZE FS \n$@"
-	COLUMN_WIDTHS=$(echo "$ZVOL_LIST" | awk '{
+	COLUMN_WIDTHS=$(printf "$ZVOL_LIST" | awk '{
 		for (i = 1; i <= NF; i++) {
 			maxWidth[i] = length($i) > maxWidth[i] ? length($i) : maxWidth[i]
 		}
@@ -28,7 +28,7 @@ vzvol_pretty_print(){
 		}
 	}')
 
-	echo "$COLUMN_WIDTHS\n$ZVOL_LIST" | awk '
+	printf "$COLUMN_WIDTHS\n$ZVOL_LIST" | awk '
 		NR == 1 {
 			for (i = 1; i <= NF; i++) {
 				maxWidth[i] = $i
