@@ -1,7 +1,7 @@
 #!/bin/sh
 vzvol_showhelp() {
 	errorfunc='show_help'
-	cat << 'EOT'
+	cat << EOT
 
 vzvol is a shell script designed to help automate the process of
 creating a ZFS zvol for use as a storage unit for virtualization, or testing.
@@ -101,10 +101,9 @@ space on disk is used by the zvol, the maximum size of the zvol capacity, and
 the Filesystem, if vzvol can determine it. Imported images will list FS as
 "imported", and any zvol that does not have custom:fs set will report "unknown".
 Example output:
-ZVOL              TYPE     VMDK                          USED   SIZE  FS
-zroot/smartos     RAW      none                          20G    50G   zfs
-zroot/ubuntu  VirtualBox  ${ZUSER_HOME}/VBoxDisks/ubuntu.vmdk  1.51G  10G   ext4
-
+$(vzvol_pretty_print "zroot/smartos RAW none 20G 50G zfs
+zroot/ubuntu VirtualBox ${ZUSER_HOME}/VBoxDisks/ubuntu.vmdk 1.51G 10G ext4"
+)
 
 EOT
 }
